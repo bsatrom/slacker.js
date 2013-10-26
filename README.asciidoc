@@ -4,6 +4,8 @@
 
 Prollyfill for the HTML Resource Priorities (Draft) Specification
 
+image:https://travis-ci.org/bsatrom/slacker.js.png?branch=master["Build Status", link="https://travis-ci.org/bsatrom/slacker.js"]
+
 == Purpose & Goals
 
 The purpose of this project is to serve as a complete prolyfill for the draft https://dvcs.w3.org/hg/webperf/raw-file/tip/specs/ResourcePriorities/Overview.html#attr-postpone[Resource Priorities spec], including support for new HTML attributes (+lazyload+ and +postpone+), a new CSS property (+resource-priorities+) and a DOM event (+lazyloaded+). This project includes built-in feature detection and, by-default, will only polyfill those forms features not present in the user's browser. 
