@@ -1,0 +1,42 @@
+{
+  "name": "slacker.js",
+  "version": "0.1.0",
+  "description": "A prollyfill for the Resource Priorities Specification",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bsatrom/slacker.js"
+  },
+  "keywords": [
+    "html5",
+    "polyfill",
+    "prollyfill",
+    "resource priorities"
+  ],
+  "devDependencies": {
+    "grunt": "*",
+    "grunt-contrib-uglify": "*",
+    "grunt-contrib-watch": "~0.4.4",
+    "grunt-contrib-jshint": "~0.6.0",
+    "grunt-contrib-concat": "~0.3.0",
+    "grunt-contrib-jasmine": "~0.5.1",
+    "grunt-notify": "~0.2.7",
+    "karma-script-launcher": "~0.1.0",
+    "karma-chrome-launcher": "~0.1.0",
+    "karma-firefox-launcher": "~0.1.0",
+    "karma-html2js-preprocessor": "~0.1.0",
+    "karma-jasmine": "~0.1.0",
+    "karma-requirejs": "~0.1.0",
+    "karma-coffee-preprocessor": "~0.1.0",
+    "karma-phantomjs-launcher": "~0.1.0",
+    "karma": "~0.10.1",
+    "grunt-karma": "~0.6.1",
+    "karma-safari-launcher": "~0.1.1",
+    "karma-opera-launcher": "~0.1.0"
+  },
+  "author": "Brandon Satrom",
+  "license": "MIT",
+  "readmeFilename": "README.asciidoc",
+  "scripts": {
+    "test": "grunt test"
+  }
+}

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" src="styles.css" />
+    <link rel="stylesheet" type="text/css" src="animations.css" lazyload />
+    <style>
+        video.promo source {
+            resource-priorities: postpone;
+        }
+    </style>
+</head>
+<body>
+<img id="siteLogo" src="/images/site.png"/>
+<img id="Header" src="/images/Header.png"/>
+<ul class="gallery">
+    <li>
+        <img id="img1" src=".../images/img1.png" lazyload />
+    </li>
+    <li>
+        <img id="img3" src=".../images/img2.png" postpone />
+    </li>
+    <li>
+        <img id="img3" src=".../images/img3.png" postpone />
+    </li>
+</ul>
+<video class="promo">
+    <source src="/videos/promo.mp4">
+    <source src="/videos/promo.ogv">
+    <source src="/videos/promo.webm">
+</video>
+<script src="app.js" ></script>
+<script src="GoogleAnalytics.js" lazyload></script>
+</body>
+</html>
