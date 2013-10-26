@@ -8,6 +8,8 @@ Prollyfill for the HTML Resource Priorities (Draft) Specification
 
 The purpose of this project is to serve as a complete prolyfill for the draft https://dvcs.w3.org/hg/webperf/raw-file/tip/specs/ResourcePriorities/Overview.html#attr-postpone[Resource Priorities spec], including support for new HTML attributes (+lazyload+ and +postpone+), a new CSS property (+resource-priorities+) and a DOM event (+lazyloaded+). This project includes built-in feature detection and, by-default, will only polyfill those forms features not present in the user's browser. 
 
+As a prollyfill, this library's primary purpose is to serve as a proof-of-concept and testbed for conversations around the Resource Priorities specification, and *not* to serve as a cross-browser polyfill ready for production use.
+
 This library will function as both a drop-in and opt-in prollyfill, depending on the features being used. For the +lazyload+ and +postpone+ properties, this library will automatically detect and manage these resources when included in a document. When using the +resource-priorities+ CSS property, +link+ and +style+ elements should be decorated with an attribute (+data-slacker-interpret+) that will indicate use of this property to the prollyfill.
 
 *Goals*
