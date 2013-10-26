@@ -35,3 +35,10 @@ This library will function as both a drop-in and opt-in prollyfill, depending on
 |Support for +resource-priorities+ CSS property|Yes (+data-slacker-interpret+)|Parse all +link+ and +style+ elements that use the +data-slacker-interpret+ attribute and find all instances of the +resource-priorities+ property; Remove +src+ values for related elements, and any CSS properties that specify a source (like +background-image+)|None|+img+, +audio+, +video+, +script+, +link+, +embed+, +iframe+, +object+, +svg feImage+, +svg use+, +svg script+, +svg tref+, '+background-image+', '+border-image-source+', '+content+', '+cursor+', '+list-style-image+', '+@font-face src+'
 |Support for +lazyloaded+ event|No|Once the +src+ has been re-set for resources with the +lazyload+ attribute, fire the +lazyloaded+ event. If no such elements exist, fire immediately after +document.load+|None| N/A
 |==============================================
+
+== Roadmap
+
+- v0.1 - Support for the +lazyload+ attribute and +lazyloaded+ event
+- v0.2 - Support fot the +postpone+ attribute
+- v0.5 - Support for the +resource-priorities+ CSS property
+- v1.0 - Full spec support (v0.5 + bug-fixes needed)
