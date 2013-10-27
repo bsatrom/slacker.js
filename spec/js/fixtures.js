@@ -9,85 +9,95 @@ describe('Slacker.js Test Suite', function() {
     path = 'javascripts/fixtures/';
   }
 
+  function loadFrame(test) {
+    var slackerFrame = document.querySelector('iframe#slackerFrame'),
+      loaded = false;
+    slackerFrame.src = path + 'lazyload.html?var=?' + Date.now();
+
+    slackerFrame.addEventListener('load', function() {
+      loaded = true;
+    });
+
+    waitsFor(function() {
+      return loaded;
+    }, 'iframe load event never fired', 2000);
+
+    runs(function() {
+      if (test && typeof test === 'function') {
+        test(slackerFrame);
+      }
+
+      slackerFrame.src = '';
+    });
+  }
+
   describe('lazyload attribute tests', function() {
     it('should test for the lazyload attribute before acting', function() {
       var s = document.createElement('script');
       var lazyloadSupported = 'lazyload' in s;
-      var slackerFrame = document.querySelector('iframe#slackerFrame'),
-        loaded = false;
-      slackerFrame.src = path + 'lazyload.html';
 
-      slackerFrame.addEventListener('load', function() {
-        loaded = true;
-      });
-
-      waitsFor(function() {
-        return loaded;
-      }, 'iframe load event never fired', 2000);
-
-      runs(function() {
+      loadFrame(function(frame) {
         expect(lazyloadSupported)
-          .toEqual(slackerFrame.contentWindow.slacker.features.lazyload);
-
-        slackerFrame.src = '';
+          .toEqual(frame.contentWindow.slacker.features.lazyload);
       });
     });
 
     it('should detect the lazyload attribute and remove data-href',
     function() {
-      var slackerFrame = document.querySelector('iframe#slackerFrame'),
-        loaded = false;
-      slackerFrame.src = path + '/lazyload.html';
-
-      slackerFrame.addEventListener('load', function() {
-        loaded = true;
-      });
-
-      waitsFor(function() {
-        return loaded;
-      }, 'iframe load event never fired', 2000);
-
-      runs(function() {
+      loadFrame(function(frame) {
         var stylesheet =
-          slackerFrame.contentDocument.querySelectorAll('link[lazyload]');
+          frame.contentDocument.querySelectorAll('link[lazyload]');
 
         expect(stylesheet.length).not.toBe(0);
         expect(stylesheet[0].getAttribute('data-href')).toEqual('');
-
-        slackerFrame.src = '';
       });
     });
 
     it('should hold the resource source in the lazyLoaded array',
-    function() {
-      var slackerFrame = document.querySelector('iframe#slackerFrame'),
-        loaded = false;
-      slackerFrame.src = path + '/lazyload.html';
+      function() {
+        loadFrame(function(frame) {
+          expect(frame.contentWindow.slacker.lazyLoaded.length)
+            .not.toEqual(0);
+        });
+    });
 
-      slackerFrame.addEventListener('load', function() {
-        loaded = true;
-      });
+    it('should support the script element', function() {
+      loadFrame(function(frame) {
+        var stylesheet =
+          frame.contentDocument.querySelectorAll('script[lazyload]');
 
-      waitsFor(function() {
-        return loaded;
-      }, 'iframe load event never fired', 2000);
-
-      runs(function() {
-        expect(slackerFrame.contentWindow.slacker.lazyLoaded.length)
-          .toEqual(2);
-        //var stylesheet =
-        //  slackerFrame.contentDocument.querySelectorAll('link[lazyload]');
-
-        //expect(stylesheet.length).not.toBe(0);
-        //expect(stylesheet[0].getAttribute('data-href')).toBe(null);
-
-        slackerFrame.src = '';
+        expect(stylesheet.length).not.toBe(0);
+        expect(stylesheet[0].getAttribute('data-src')).toEqual('');
       });
     });
 
     it('should re-apply the lazyload attribute after the document.load event',
     function() {
+      loadFrame(function(frame) {
+        var stylesheet =
+          frame.contentDocument.querySelectorAll('link[lazyload]');
 
+        expect(stylesheet[0].getAttribute('href')).not.toBe(null);
+      });
+    });
+
+    it('should fire the lazyloaded event after src replacement is complete',
+    function() {
+      loadFrame(function(frame) {
+        var lazyloaded = false;
+
+        frame.addEventListener('lazyloaded', function() {
+          lazyloaded = true;
+        }, false);
+
+        waitsFor(function() {
+          return lazyloaded;
+        }, 'iframe lazyloaded event never fired', 2000);
+
+        runs(function() {
+          expect(lazyloaded).toBe(true);
+        });
+      });
     });
   });
 });
