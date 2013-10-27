@@ -17,6 +17,8 @@
     "window": false,
     "document": false,
     "it": false,
-    "expect": false
+    "expect": false,
+    "waitsFor": false,
+    "runs": false
   }
 }

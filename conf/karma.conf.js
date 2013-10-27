@@ -6,10 +6,6 @@ module.exports = function(config) {
     // list of files / patterns to load in the browser
     files: [
       'dist/js/slacker.min.js',
-      {pattern: 'spec/lib/jquery.min.js', watched: false, served: true,
-        included: true},
-      {pattern: 'spec/lib/jasmine-jquery.js', watched: false, served: true,
-        included: true},
       {pattern: 'src/*.js', watched: true, served: true, included: false},
       {pattern: 'spec/css/*.css', included: false},
       {pattern: 'spec/**/*.html', included: false},
