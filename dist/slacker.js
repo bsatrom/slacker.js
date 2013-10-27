@@ -45,9 +45,12 @@
 
     for (i = 0, len = elements.length; i < len; i++) {
       var el = elements[i];
-      if (el.type === 'link') {
+      if (el.nodeName === 'LINK') {
         lazyLoaded.push(el.getAttribute('data-href'));
         el.setAttribute('data-href','');
+      } else if (el.nodeName === 'IMG') {
+        lazyLoaded.push(el.getAttribute('data-src'));
+        el.setAttribute('data-src','');
       }
     }
     //Make the array of lazyLoaded elements publicly available

@@ -3,7 +3,7 @@
 
   var i, len,
     lazyLoaded = [];
-  
+
   //Test for the presence of the lazyload attribute.
   //If it's not supported, let's get to work.
   if (!window.slacker.features.lazyload){
