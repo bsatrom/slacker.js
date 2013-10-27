@@ -13,8 +13,42 @@ describe('Slacker.js Test Suite', function() {
   }
 
   describe('lazyload attribute tests', function() {
-    it('should be true', function() {
-      expect(true).toBe(true);
+    it('should test for the lazyload attribute before acting', function() {
+      var s = document.createElement('script');
+      var lazyloadSupported = 'lazyload' in s;
+
+      expect(lazyloadSupported).toEqual(window.slacker.features.lazyload);
+    });
+
+    it('should detect the lazyload attribute and remove the src attribute',
+    function() {
+      fixtures.load('lazyload.html');
+
+      var stylesheet = document.querySelectorAll('[lazyload]');
+
+      expect(stylesheet.length).not.toBe(0);
+      expect(stylesheet[0].getAttribute('src')).toEqual('');
+    });
+
+    it('should re-apply the lazyload attribute after the document.load event',
+    function() {
+      var loaded = false;
+      fixtures.load('lazyload.html');
+
+      var stylesheet = document.querySelectorAll('[lazyload]');
+
+
+      window.addEventListener('load', function() {
+        loaded = true;
+      });
+
+      //waitsFor(function() {
+     //   return loaded;
+     // }, 'document load event never fired', 10000);
+
+      //runs(function() {
+      //  expect(stylesheet[0].getAttribute('src')).not.toEqual('');
+     // });
     });
   });
 

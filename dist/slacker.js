@@ -22,5 +22,33 @@
  * THE SOFTWARE.
  */
 (function() {
-  /* CODEZ HERE */
+  window.slacker = window.slacker || {};
+
+  var resourcePrioritiesFeatures = {
+    lazyload: (function () {
+      var s = document.createElement('script');
+      return 'lazyload' in s;
+    })()
+  };
+  
+  window.slacker.features = resourcePrioritiesFeatures;
+}());;(function() {
+  window.slacker = window.slacker || {};
+
+  var i, len,
+    lazyLoaded = [],
+    qs = document.querySelector;
+
+  //Test for the presense of the lazyload attribute.
+  //If it's not supported, let's get to work.
+  if (!window.slacker.features.lazyload){
+    var elements = document.querySelectorAll('[lazyload]');
+
+    for (i = 0, len = elements.length; i < len; i++) {
+      var el = elements[i];
+      lazyLoaded.push(el.getAttribute('src'));
+      el.setAttribute('src','');
+    }
+  }
+
 }());

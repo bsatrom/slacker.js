@@ -46,6 +46,7 @@ module.exports = function(grunt) {
       },
       dist: {
         src: [
+          'src/slacker.features.js',
           'src/slacker.js'
         ],
         dest: 'dist/slacker.js'
