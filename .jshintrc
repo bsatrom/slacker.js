@@ -19,6 +19,10 @@
     "it": false,
     "expect": false,
     "waitsFor": false,
-    "runs": false
+    "runs": false,
+    "Event": false,
+    "fixtures": false,
+    "afterEach": false,
+    "beforeEach": false
   }
 }

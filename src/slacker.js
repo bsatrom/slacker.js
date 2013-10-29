@@ -41,7 +41,8 @@
       for (i = 0, len = lazyLoaded.length; i < len; i++) {
         var element = lazyLoaded[i];
 
-        element.el.setAttribute(elementSource[element.el.nodeName], element.source);
+        element.el.setAttribute(elementSource[element.el.nodeName],
+          element.source);
       }
 
       //Processing done, now fire the +lazyloaded+ event

@@ -101,7 +101,10 @@ module.exports = function(grunt) {
     jasmine: {
       src: ['lib/**/*.js', 'dist/slacker.min.js'],
       options: {
-        specs: 'spec/js/fixtures.js'
+        specs: 'spec/js/fixtures.js',
+        vendor: [
+          'node_modules/js-fixtures/fixtures.js'
+        ]
       }
     },
     changelog: {

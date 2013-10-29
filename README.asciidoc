@@ -8,9 +8,7 @@ image:https://travis-ci.org/bsatrom/slacker.js.png?branch=master["Build Status",
 
 == Purpose & Goals
 
-== Purpose & Goals
-
-The purpose of this project is to serve as a complete prolyfill for the draft https://dvcs.w3.org/hg/webperf/raw-file/tip/specs/ResourcePriorities/Overview.html#attr-postpone[Resource Priorities spec], including support for new HTML attributes (+lazyload+ and +postpone+), a new CSS property (+resource-priorities+) and a DOM event (+lazyloaded+). This project includes built-in feature detection and, by-default, will only polyfill those forms features not present in the user's browser.
+The purpose of this project is to serve as a complete prollyfill for the draft https://dvcs.w3.org/hg/webperf/raw-file/tip/specs/ResourcePriorities/Overview.html#attr-postpone[Resource Priorities spec], including support for new HTML attributes (+lazyload+ and +postpone+), a new CSS property (+resource-priorities+) and a DOM event (+lazyloaded+). This project includes built-in feature detection and, by-default, will only polyfill those forms features not present in the user's browser.
 
 As a prollyfill, this library's primary purpose is to serve as a proof-of-concept and testbed for conversations around the Resource Priorities specification, and *not* to serve as a cross-browser polyfill ready for production use.
 
@@ -24,7 +22,7 @@ This library will function as both a drop-in and opt-in prollyfill, depending on
 
 *Non-Goals*
 
-- This library is intended to serve as a proof-of-contept for a cutting-edge web platform feature and, as such is not meant for production use.
+- This library is intended to serve as a proof-of-concept for a cutting-edge web platform feature and, as such is not meant for production use.
 - As a proof-of-concept, this library will not be performance-tuned
 - This library may diverge from the https://dvcs.w3.org/hg/webperf/raw-file/tip/specs/ResourcePriorities/Overview.html#attr-postpone[Resource Priorities spec] in order to add convenience features, non-standard behaviors, or to add experimental APIs for consideration by spec authors.
 
@@ -35,7 +33,7 @@ This library will function as both a drop-in and opt-in prollyfill, depending on
 |==============================================
 |Feature|Opt-In|Workflow|Exceptions|Supported Elements
 |Support for +lazyload+ attribute|Yes (+data-src+/+data-href+)|Remove +src+ of elements with +lazyload+ and place in an array; When +document.load+ is fired, re-set the +src+ for each element.|for +script+, if +defer+ is used with +lazyload+, it has no effect; for +script+, if +async+ is set to false, +lazyload+ has no effect; for +svg reImage+, if +externalResourcesRequired+ is set to "true," +lazyload+ has no effect|+img+, +audio+, +video+, +script+, +link+, +embed+, +iframe+, +object+, +svg feImage+, +svg use+, +svg script+, +svg tref+
-|Support for +postpone+ attrbute|Yes (+data-src+/+data-href+)|Remove +src+ of elements with +postpone+ and place in an array; On scroll or when an element with the +display:none+ property becomes visible, determine if any elements are within the bounding box of the page and, if so, re-set the +src+ for each visible element.|for +audio+, +postpone+ only works if the +controls+ attribute has been set; for +svg reImage+, if +externalResourcesRequired+ is set to "true," +postpone+ has no effect|+img+, +audio+, +video+, +script+, +link+, +embed+, +iframe+, +object+, +svg feImage+, +svg use+, +svg script+, +svg tref+
+|Support for +postpone+ attribute|Yes (+data-src+/+data-href+)|Remove +src+ of elements with +postpone+ and place in an array; On scroll or when an element with the +display:none+ property becomes visible, determine if any elements are within the bounding box of the page and, if so, re-set the +src+ for each visible element.|for +audio+, +postpone+ only works if the +controls+ attribute has been set; for +svg reImage+, if +externalResourcesRequired+ is set to "true," +postpone+ has no effect|+img+, +audio+, +video+, +script+, +link+, +embed+, +iframe+, +object+, +svg feImage+, +svg use+, +svg script+, +svg tref+
 |Support for +resource-priorities+ CSS property|Yes (+data-slacker-interpret+)|Parse all +link+ and +style+ elements that use the +data-slacker-interpret+ attribute and find all instances of the +resource-priorities+ property; Remove +src+ values for related elements, and any CSS properties that specify a source (like +background-image+)|None|+img+, +audio+, +video+, +script+, +link+, +embed+, +iframe+, +object+, +svg feImage+, +svg use+, +svg script+, +svg tref+, '+background-image+', '+border-image-source+', '+content+', '+cursor+', '+list-style-image+', '+@font-face src+'
 |Support for +lazyloaded+ event|No|Once the +src+ has been re-set for resources with the +lazyload+ attribute, fire the +lazyloaded+ event. If no such elements exist, fire immediately after +document.load+|None| N/A
 |==============================================
