@@ -4,7 +4,7 @@ module.exports = function(grunt) {
   var browsers;
   (function() {
     var os = require('os');
-    browsers = ['Chrome', 'Firefox', 'Opera'];
+    browsers = ['Chrome', 'Firefox'];
     if (os.type() === 'Darwin') {
       browsers.push('ChromeCanary');
       browsers.push('Safari');
@@ -136,7 +136,6 @@ module.exports = function(grunt) {
   // Default task(s).
   grunt.registerTask('default', ['jshint']);
   grunt.registerTask('minify', ['jshint', 'concat', 'uglify']);
-  grunt.registerTask('x-test', ['minify', 'jasmine', 'karma:forms']);
-  grunt.registerTask('test', ['minify', 'jasmine']);
+  grunt.registerTask('test', ['minify', 'karma:forms']);
   grunt.registerTask('release', ['x-test', 'changelog']);
 };
