@@ -38,6 +38,6 @@
   "license": "MIT",
   "readmeFilename": "README.asciidoc",
   "scripts": {
-    "test": "grunt test"
+    "test": "./node_modules/.bin/karma start --browsers Firefox --single-run"
   }
 }
