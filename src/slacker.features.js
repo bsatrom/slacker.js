@@ -1,10 +1,17 @@
 (function() {
   window.slacker = window.slacker || {};
 
+  function featureTest(feature) {
+    var s = document.createElement('script');
+    return feature in s;
+  }
+
   var resourcePrioritiesFeatures = {
     lazyload: (function () {
-      var s = document.createElement('script');
-      return 'lazyload' in s;
+      featureTest('lazyload');
+    })(),
+    postpone: (function () {
+      featureTest('postpone');
     })()
   };
   

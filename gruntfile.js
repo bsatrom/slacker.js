@@ -16,7 +16,7 @@ module.exports = function(grunt) {
 
   var banner = '/*\n * slacker.js v<%= pkg.version %>' +
     ' (<%= grunt.template.today("yyyy-mm-dd") %>)' +
-    '\n * Copyright © 2013 Brandon Satrom\n *\n * Licensed under the' +
+    '\n * Copyright © 2014 Brandon Satrom\n *\n * Licensed under the' +
     ' MIT License (the "License")\n * Permission is hereby granted,' +
     ' free of charge, to any person obtaining a copy\n * of this' +
     ' software and associated documentation files (the "Software"), to deal\n' +
