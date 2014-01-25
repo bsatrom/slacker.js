@@ -1,5 +1,5 @@
 /*
- * slacker.js v0.1.0 (2013-10-28)
+ * slacker.js v0.1.0 (2014-01-25)
  * Copyright © 2013 Brandon Satrom
  *
  * Licensed under the MIT License (the "License")
@@ -80,7 +80,8 @@
       }
 
       //Processing done, now fire the +lazyloaded+ event
-      window.dispatchEvent(new Event('lazyloaded'));
+      var evt = new CustomEvent('lazyloaded');
+      window.dispatchEvent(evt);
     });
   }
 }());

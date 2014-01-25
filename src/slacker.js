@@ -46,7 +46,8 @@
       }
 
       //Processing done, now fire the +lazyloaded+ event
-      window.dispatchEvent(new Event('lazyloaded'));
+      var evt = new CustomEvent('lazyloaded');
+      window.dispatchEvent(evt);
     });
   }
 }());

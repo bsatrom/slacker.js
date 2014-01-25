@@ -20,7 +20,7 @@
     "expect": false,
     "waitsFor": false,
     "runs": false,
-    "Event": false,
+    "CustomEvent": false,
     "fixtures": false,
     "afterEach": false,
     "beforeEach": false
