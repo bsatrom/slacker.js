@@ -180,7 +180,7 @@ describe('Slacker.js Test Suite', function() {
           count = 0;
         var trefs = frame.contentDocument.getElementsByTagName('tref');
 
-        for (i=0, len=imgs.length; i < len; i++) {
+        for (i=0, len=trefs.length; i < len; i++) {
           if(trefs[i].hasAttribute('lazyload')) {
             count++;
             expect(trefs[i].getAttribute('data-xlink:href')).toEqual('');
