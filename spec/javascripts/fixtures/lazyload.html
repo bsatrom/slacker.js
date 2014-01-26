@@ -3,13 +3,79 @@
 <head>
     <link rel="stylesheet" type="text/css" href="javascripts/fixtures/styles.css" />
     <link rel="stylesheet" type="text/css" data-href="javascripts/fixtures/animations.css" lazyload />
-
 </head>
 <body>
     <img data-src="javascripts/fixtures/foo.png" lazyload/>
     <script data-src="javascripts/fixtures/foo.js" lazyload></script>
+    <object data-data="move.swf" type="application/x-shockwave-flash" lazyload></object>
+    <embed type="video/quicktime" data-src="movie.mov" width="640" height="480" lazyload>
 
-    <script src="../src/slacker.features.js"></script>
-    <script src="../src/slacker.js"></script>
+    <iframe data-src="page.html" width="300" height="300" lazyload>
+        <p>Your browser does not support iframes.</p>
+    </iframe>
+
+    <!-- svg feImage -->
+    <svg xmlns:xlink="http://www.w3.org/1999/xlink"
+         xmlns="http://www.w3.org/2000/svg"
+         version="1.1">
+
+        <defs id="defs">
+            <filter color-interpolation-filters="sRGB" x="-1.0" y="-1.0" width="3.0"
+                    xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
+                    xlink:actuate="onLoad" height="3.0"
+                    xlink:show="other" id="blend-square">
+                <feImage x="4" y="0" width="522"
+                         xmlns:xlink="http://www.w3.org/1999/xlink"
+                         xlink:type="simple" xlink:actuate="onLoad" id="image_0"
+                         height="530" xlink:show="embed"
+                         data-xlink:href="http://wallpapersus.com/wallpapers/2012/11/Pirates-Of-The-Caribbean-On-Stranger-Tides-05-2048x2048.jpg" lazyload/>
+            </filter>
+        </defs>
+    </svg>
+
+    <!-- svg use -->
+    <svg width="10cm" height="3cm" viewBox="0 0 100 30" version="1.1"
+         xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+        <defs>
+            <rect id="MyRect" width="60" height="10"/>
+        </defs>
+        <rect x=".1" y=".1" width="99.8" height="29.8"
+              fill="none" stroke="blue" stroke-width=".2" />
+        <use x="20" y="10" data-xlink:href="#MyRect" lazyload />
+    </svg>
+
+    <!-- svg script -->
+    <svg width="6cm" height="5cm" viewBox="0 0 600 500"
+         xmlns="http://www.w3.org/2000/svg" version="1.1">
+        <script type="application/ecmascript" data-xlink:href="javascripts/fixtures/foo.js" lazyload></script>
+        <rect x="1" y="1" width="598" height="498" fill="none" stroke="blue"/>
+        <circle onclick="circle_click(evt)" cx="300" cy="225" r="100"
+                fill="red"/>
+    </svg>
+
+    <!-- svg tref -->
+    <svg width="10cm" height="3cm" viewBox="0 0 1000 300" version="1.1"
+         xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+        <defs>
+            <text id="ReferencedText">
+                Referenced character data
+            </text>
+        </defs>
+        <desc>Example tref01 - inline vs reference text content</desc>
+
+        <text x="100" y="100" font-size="45" fill="blue" >
+            Inline character data
+        </text>
+        <text x="100" y="200" font-size="45" fill="red" >
+            <tref data-xlink:href="#ReferencedText" lazyload/>
+        </text>
+
+        <!-- Show outline of canvas using 'rect' element -->
+        <rect x="1" y="1" width="998" height="298"
+              fill="none" stroke="blue" stroke-width="2" />
+    </svg>
+
+    <script src="/../src/slacker.features.js"></script>
+    <script src="/../src/slacker.js"></script>
 </body>
 </html>

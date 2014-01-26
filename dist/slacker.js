@@ -1,6 +1,6 @@
 /*
- * slacker.js v0.1.0 (2014-01-25)
- * Copyright © 2013 Brandon Satrom
+ * slacker.js v0.1.0 (2014-01-26)
+ * Copyright © 2014 Brandon Satrom
  *
  * Licensed under the MIT License (the "License")
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -24,10 +24,17 @@
 (function() {
   window.slacker = window.slacker || {};
 
+  function featureTest(feature) {
+    var s = document.createElement('script');
+    return feature in s;
+  }
+
   var resourcePrioritiesFeatures = {
     lazyload: (function () {
-      var s = document.createElement('script');
-      return 'lazyload' in s;
+      return featureTest('lazyload');
+    })(),
+    postpone: (function () {
+      return featureTest('postpone');
     })()
   };
   
@@ -49,7 +56,11 @@
   var elementSource = {
     LINK: 'href',
     IMG: 'src',
-    SCRIPT: 'src'
+    SCRIPT: 'src',
+    OBJECT: 'data',
+    EMBED: 'src',
+    IFRAME: 'src',
+    feImage: 'xlink:href'
   };
 
   //Test for the presence of the lazyload attribute.

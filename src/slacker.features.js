@@ -8,10 +8,10 @@
 
   var resourcePrioritiesFeatures = {
     lazyload: (function () {
-      featureTest('lazyload');
+      return featureTest('lazyload');
     })(),
     postpone: (function () {
-      featureTest('postpone');
+      return featureTest('postpone');
     })()
   };
   

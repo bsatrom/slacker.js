@@ -32,7 +32,7 @@
     "grunt-karma": "~0.6.1",
     "karma-safari-launcher": "~0.1.1",
     "karma-opera-launcher": "~0.1.0",
-    "js-fixtures": "~1.3.1"
+    "js-fixtures": "1.5.0"
   },
   "author": "Brandon Satrom",
   "license": "MIT",
