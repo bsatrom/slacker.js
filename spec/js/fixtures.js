@@ -92,6 +92,36 @@ describe('Slacker.js Test Suite', function() {
       });
     });
 
+    it('should support the video element', function() {
+      postLoadTest(function(frame) {
+        var video =
+          frame.contentDocument.querySelectorAll('video[lazyload]');
+
+        expect(video.length).not.toBe(0);
+        expect(video[0].getAttribute('data-src')).toEqual('');
+      });
+    });
+
+    it('should support the audio element', function() {
+      postLoadTest(function(frame) {
+        var audio =
+          frame.contentDocument.querySelectorAll('audio[lazyload]');
+
+        expect(audio.length).not.toBe(0);
+        expect(audio[0].getAttribute('data-src')).toEqual('');
+      });
+    });
+
+    it('should support the video & audio source element', function() {
+      postLoadTest(function(frame) {
+        var video =
+          frame.contentDocument.querySelectorAll('source[lazyload]');
+
+        expect(video.length).not.toBe(0);
+        expect(video[0].getAttribute('data-src')).toEqual('');
+      });
+    });
+
     it('should support the object element', function() {
       postLoadTest(function(frame) {
         var obj =
@@ -193,13 +223,27 @@ describe('Slacker.js Test Suite', function() {
       });
     });
 
-    it('should re-apply the lazyload attribute after the document.load event',
+    it('should re-apply the source attribute after the lazyloaded event',
     function() {
       postLoadTest(function(frame) {
-        var stylesheet =
-          frame.contentDocument.querySelectorAll('link[lazyload]');
+        var win = frame.contentWindow;
+        if (win.lazyLoadFired) {
+          var stylesheet =
+            frame.contentDocument.querySelectorAll('link[lazyload]');
 
-        expect(stylesheet[0].getAttribute('href')).not.toBe(null);
+          expect(stylesheet[0].getAttribute('href')).not.toBe(null);
+        } else {
+          waitsFor(function() {
+            return win.lazyLoadFired;
+          }, 'lazyloaded iframe event never fired', 3000);
+
+          runs(function() {
+            var stylesheet =
+              frame.contentDocument.querySelectorAll('link[lazyload]');
+
+            expect(stylesheet[0].getAttribute('href')).not.toBe(null);
+          });
+        }
       });
     });
 

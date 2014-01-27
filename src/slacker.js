@@ -15,6 +15,9 @@
   var elementSource = {
     LINK: 'href',
     IMG: 'src',
+    VIDEO: 'src',
+    AUDIO: 'src',
+    SOURCE: 'src',
     SCRIPT: 'src',
     OBJECT: 'data',
     EMBED: 'src',

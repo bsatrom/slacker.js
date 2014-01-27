@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <link rel="stylesheet" type="text/css" href="javascripts/fixtures/styles.css" />
-    <link rel="stylesheet" type="text/css" data-href="javascripts/fixtures/animations.css" lazyload />
     <script>
         window.lazyLoadFired = false;
 
@@ -10,12 +8,23 @@
             window.lazyLoadFired = true;
         }, false);
     </script>
+    <link rel="stylesheet" type="text/css" href="javascripts/fixtures/styles.css" />
+    <link rel="stylesheet" type="text/css" data-href="javascripts/fixtures/animations.css" lazyload />
 </head>
 <body>
     <img data-src="javascripts/fixtures/foo.png" lazyload/>
     <script data-src="javascripts/fixtures/foo.js" lazyload></script>
     <object data-data="move.swf" type="application/x-shockwave-flash" lazyload></object>
     <embed type="video/quicktime" data-src="movie.mov" width="640" height="480" lazyload>
+
+    <!-- video -->
+    <video data-src="javascripts/fixtures/promo.mp4" controls lazyload></video>
+    <video>
+        <source data-src="javascripts/fixtures/promo.mp4" lazyload>
+    </video>
+
+    <!-- audio -->
+    <audio data-src="javascripts/fixtures/promo.mp3" controls lazyload></audio>
 
     <iframe data-src="javascripts/fixtures/page.html" width="300" height="300" lazyload>
         <p>Your browser does not support iframes.</p>
