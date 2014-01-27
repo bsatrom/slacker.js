@@ -3,6 +3,13 @@
 <head>
     <link rel="stylesheet" type="text/css" href="javascripts/fixtures/styles.css" />
     <link rel="stylesheet" type="text/css" data-href="javascripts/fixtures/animations.css" lazyload />
+    <script>
+        window.lazyLoadFired = false;
+
+        window.addEventListener('lazyloaded', function() {
+            window.lazyLoadFired = true;
+        }, false);
+    </script>
 </head>
 <body>
     <img data-src="javascripts/fixtures/foo.png" lazyload/>
@@ -10,7 +17,7 @@
     <object data-data="move.swf" type="application/x-shockwave-flash" lazyload></object>
     <embed type="video/quicktime" data-src="movie.mov" width="640" height="480" lazyload>
 
-    <iframe data-src="page.html" width="300" height="300" lazyload>
+    <iframe data-src="javascripts/fixtures/page.html" width="300" height="300" lazyload>
         <p>Your browser does not support iframes.</p>
     </iframe>
 

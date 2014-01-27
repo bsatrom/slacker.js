@@ -55,20 +55,20 @@
           element.source);
       }
 
-      //Processing done, now fire the +lazyloaded+ event
+      //Processing done, now fire the lazyloaded event
       var evt = new CustomEvent('lazyloaded');
       window.dispatchEvent(evt);
     });
+  }
 
-    function getAdjustedNodeName(node) {
-      //Deal with the fact that a script element can occur in
-      //svg elements with a different source attribute
-      var name = node;
-      if (name === 'script') {
-        name = 'svgScript';
-      }
-
-      return name;
+  function getAdjustedNodeName(node) {
+    //Deal with the fact that a script element can occur in
+    //svg elements with a different source attribute
+    var name = node;
+    if (name === 'script') {
+      name = 'svgScript';
     }
+
+    return name;
   }
 }());

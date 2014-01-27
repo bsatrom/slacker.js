@@ -1,5 +1,5 @@
 /*
- * slacker.js v0.1.0 (2014-01-26)
+ * slacker.js v0.1.0 (2014-01-27)
  * Copyright © 2014 Brandon Satrom
  *
  * Licensed under the MIT License (the "License")
@@ -60,7 +60,11 @@
     OBJECT: 'data',
     EMBED: 'src',
     IFRAME: 'src',
-    feImage: 'xlink:href'
+    // SVG Elements
+    feImage: 'xlink:href',
+    use: 'xlink:href',
+    svgScript: 'xlink:href',
+    tref: 'xlink:href'
   };
 
   //Test for the presence of the lazyload attribute.
@@ -71,8 +75,9 @@
     for (i = 0, len = elements.length; i < len; i++) {
       var el = elements[i];
 
-      if (el.nodeName in elementSource) {
-        clearSourceAttribute(el, elementSource[el.nodeName]);
+      var name = getAdjustedNodeName(el.nodeName);
+      if (name in elementSource) {
+        clearSourceAttribute(el, elementSource[name]);
       }
     }
     //Make the array of lazyLoaded elements publicly available
@@ -86,13 +91,25 @@
       for (i = 0, len = lazyLoaded.length; i < len; i++) {
         var element = lazyLoaded[i];
 
-        element.el.setAttribute(elementSource[element.el.nodeName],
+        var name = getAdjustedNodeName(element.el.nodeName);
+        element.el.setAttribute(elementSource[name],
           element.source);
       }
 
-      //Processing done, now fire the +lazyloaded+ event
+      //Processing done, now fire the lazyloaded event
       var evt = new CustomEvent('lazyloaded');
       window.dispatchEvent(evt);
     });
+  }
+
+  function getAdjustedNodeName(node) {
+    //Deal with the fact that a script element can occur in
+    //svg elements with a different source attribute
+    var name = node;
+    if (name === 'script') {
+      name = 'svgScript';
+    }
+
+    return name;
   }
 }());

@@ -1,4 +1,6 @@
 describe('Slacker.js Test Suite', function() {
+  window.console.log(document.location.pathname);
+
   if (document.location.pathname === '/context.html') {
     // Karma is running the test, so change the base
     fixtures.path = 'base/spec/javascripts/fixtures/';
@@ -204,27 +206,18 @@ describe('Slacker.js Test Suite', function() {
     it('should fire the lazyloaded event after src replacement is complete',
     function() {
       postLoadTest(function(frame) {
-        var lazyLoadedEvt = false;
+        var win = frame.contentWindow;
+        if (win.lazyLoadFired) {
+          expect(win.lazyLoadFired).toBe(true);
+        } else {
+          waitsFor(function() {
+            return win.lazyLoadFired;
+          }, 'lazyloaded iframe event never fired', 3000);
 
-        frame.contentWindow.addEventListener('lazyloaded', function() {
-          lazyLoadedEvt = true;
-        }, false);
-
-        //Re-load the frame to make sure the event fires
-        fixtures.cleanUp();
-        fixtures.load('lazyload.html', function() {
-          if (lazyLoadedEvt) {
-            expect(lazyLoadedEvt).toBe(true);
-          } else {
-            waitsFor(function() {
-              return lazyLoadedEvt;
-            }, 'lazyloaded iframe event never fired', 3000);
-
-            runs(function() {
-              expect(lazyLoadedEvt).toBe(true);
-            });
-          }
-        });
+          runs(function() {
+            expect(win.lazyLoadFired).toBe(true);
+          });
+        }
       });
     });
   });
